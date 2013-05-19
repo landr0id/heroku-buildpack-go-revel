@@ -6,9 +6,15 @@ set -eo pipefail
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
+<<<<<<< HEAD
+ver=1.1
+file=go$ver.linux-amd64.tar.gz
+url=http://go.googlecode.com/files/$file
+=======
 ver=${GOVERSION:-1.1}
 file=${GOFILE:-go$ver.$(uname|tr A-Z a-z)-amd64.tar.gz}
 url=${GOURL:-http://go.googlecode.com/files/$file}
+>>>>>>> 770272d97a6e8a6399a500fc4ae17d7c55753453
 buildpack=$(dirname $(dirname $0))
 
 # Python
@@ -77,7 +83,6 @@ mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
-echo "-----> Running: get get ./app/pkgs/xval"
 echo "-----> Running: go get -tags heroku ./..."
 cd $p
 go get -tags heroku ./...
