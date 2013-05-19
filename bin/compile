@@ -73,13 +73,15 @@ fi
 
 name=$(cat $build/.godir)
 p=$GOPATH/src/$name
+pkgs=$GOPATH/pkg/linux_amd64/xbox-db/app/pkgs
 mkdir -p $p
 cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: get install ./app/pkgs/xval"
 cd $p
-go get ./app/pkgs/xval
+mkdir -p $pkgs
+go build -o $pkgs/xval.a $ ./app/pkgs/xval
 echo "-----> Running: go get -tags heroku ./..."
 go get -tags heroku ./...
 
