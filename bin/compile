@@ -78,11 +78,10 @@ cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: get install ./app/pkgs/xval"
-ln -s $1/app/pkgs/xval ./xval
-go install ./xval
-rm ./xval
 echo "-----> Running: go get -tags heroku ./..."
 cd $p
+ls -R .
+pwd
 go get -tags heroku ./...
 
 mkdir -p $build/bin
