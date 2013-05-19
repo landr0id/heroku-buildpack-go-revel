@@ -82,7 +82,8 @@ echo "-----> Running: go build ./pkgs/xval"
 cd $p
 imports=$(echo "$(go list -f '{{.Imports}}' ./...)" | sed 's/\[//g' | sed 's/\]//g')
 for import in $imports
-    if [[ $import == github.com* ]] ;
+do
+    if [[ $import == github.com* ]]
     then
         echo $import
         go get $import
@@ -90,9 +91,9 @@ for import in $imports
 done
 mkdir -p $pkgs
 go build -o $pkgs/xval.a ./pkgs/xval
-ls $pkgs
-echo "-----> Running: go get -tags heroku ./..."
-go get -tags heroku ./...
+# ls $pkgs
+# echo "-----> Running: go get -tags heroku ./..."
+# go get -tags heroku ./...
 
 mkdir -p $build/bin
 go get github.com/robfig/revel
