@@ -6,7 +6,6 @@ set -eo pipefail
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
-ls $1
 ver=${GOVERSION:-1.1}
 file=${GOFILE:-go$ver.$(uname|tr A-Z a-z)-amd64.tar.gz}
 url=${GOURL:-http://go.googlecode.com/files/$file}
@@ -79,7 +78,7 @@ cp -R $build/* $p
 
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: get install ./app/pkgs/xval"
-go install ./...app/pkgs/xval
+go install $1/app/pkgs/xval
 echo "-----> Running: go get -tags heroku ./..."
 cd $p
 go get -tags heroku ./...
