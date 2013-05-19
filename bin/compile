@@ -81,6 +81,7 @@ unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: go build ./pkgs/xval"
 cd $p
 imports=$(echo "$(go list -f '{{.Imports}}' ./...)" | sed 's/\[//g' | sed 's/\]//g')
+echo $imports
 for import in $imports
 do
     if [[ $import == github.com* ]]
