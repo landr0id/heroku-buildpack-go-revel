@@ -81,7 +81,7 @@ unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: get install ./app/pkgs/xval"
 cd $p
 mkdir -p $pkgs
-go build -o $pkgs/xval.a $ ./app/pkgs/xval
+go build -o $pkgs/xval.a ./app/pkgs/xval
 echo "-----> Running: go get -tags heroku ./..."
 go get -tags heroku ./...
 
