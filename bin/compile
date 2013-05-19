@@ -80,6 +80,14 @@ cp -R $build/* $p
 unset GIT_DIR # unset git dir or it will mess with goinstall
 echo "-----> Running: go build ./pkgs/xval"
 cd $p
+imports=$(echo "$(go list -f '{{.Imports}}' ./...)" | sed 's/\[//g' | sed 's/\]//g')
+for import in $imports
+    if [[ $import == github.com* ]] ;
+    then
+        echo $import
+        go get $import
+    fi
+done
 mkdir -p $pkgs
 go build -o $pkgs/xval.a ./pkgs/xval
 ls $pkgs
