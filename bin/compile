@@ -82,6 +82,7 @@ echo "-----> Running: go build ./pkgs/xval"
 cd $p
 mkdir -p $pkgs
 go build -o $pkgs/xval.a ./pkgs/xval
+ls $p
 echo "-----> Running: go get -tags heroku ./..."
 go get -tags heroku ./...
 
